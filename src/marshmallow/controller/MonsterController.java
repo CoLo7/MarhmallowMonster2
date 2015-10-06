@@ -31,17 +31,42 @@ public class MonsterController
 	
 	public void start()
 	{
-		myOutput.displayMonsterConsole(gabeMonster.toString());
-		myOutput.displayMonsterGUI(gabeMonster.toString());
+		String userName = myPopups.grabAnswer("Type in your monster's name");
+		myPopups.showResponse("Your monster's name is " + userName);
+		
+		String userMonsterEyes = myPopups.grabAnswer("Type in how many eyes you want your monster to have");
+		int Age;
+		
+		while (!isInteger(userMonsterEyes))
+		{
+			userMonsterEyes = myPopups.grabAnswer("Type in a positive number value");
+		}
+		
+		
+		myPopups.showResponse("Your monster will have " + userMonsterEyes + " eyes");
+		
+		String userMonsterNoses = myPopups.grabAnswer("Type in how many noses you want your monster to have");
+		int Noses;
+		
+		while (!isInteger(userMonsterNoses))
+		{
+			userMonsterNoses = myPopups.grabAnswer("Type in a positive number value");
+		}
+		
+		
+		myPopups.showResponse("Your monster will have " + userMonsterNoses + " noses");
+		//myOutput.displayMonsterConsole(gabeMonster.toString());
+		//myOutput.displayMonsterGUI(gabeMonster.toString());
 		//this.makeUserMonster();
 		//myOutput.displayMonsterConsole("New Monster Info " + userMonster.toString());
 	}
 	
-	private void askQuestions()
-	{
+	/**private void askQuestions()
+	{	
+		
 		System.out.println("Type in a better name for the monster");
 		String betterMonsterName = monsterScanner.next();
-		gabeMonster.setMonsterName(betterMonsterName);
+	 	gabeMonster.setMonsterName(betterMonsterName);
 		
 		System.out.println("Type in a different number of eyes for the monster");
 		int betterMonsterEyes = monsterScanner.nextInt();
@@ -62,10 +87,13 @@ public class MonsterController
 		System.out.println("Type in how many belly buttons you want your monster to have");
 		boolean betterMonsterBellyButton = monsterScanner.nextBoolean();
 		gabeMonster.setMonsterBellyButton(betterMonsterBellyButton);
-	}
+		
+	}*/
+	
 	/**
 	 * This method will create the information to create an instance of a MarshmallowMonster.
 	 */
+
 	private void makeUserMonster()
 	{
 	  //Step one: Get Variables
@@ -92,6 +120,27 @@ public class MonsterController
 		
 		//Step three: Make a monster - use the Constructor!! Remember order of Param
 		userMonster = new MarshmallowMonster(userName, userEyeCount, userNoseCount, userHairCount, userLegCount, userBellyButton);
+		
+		
 	}
+
+	private boolean isInteger(String input)
+	{
+		boolean isInt = false;
+		
+		try
+		{
+			int userMonsterEyes = Integer.parseInt(input);
+			isInt= true;
+		}
+		catch(NumberFormatException error)
+		{
+			myPopups.showResponse("not an int - bad value will be used");
+		}
+		
+		return isInt;
+	}
+	
+	
 	
 } 
