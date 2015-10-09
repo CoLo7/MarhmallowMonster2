@@ -55,6 +55,25 @@ public class MonsterController
 		
 		
 		myPopups.showResponse("Your monster will have " + userMonsterNoses + " noses");
+		
+		String userMonsterLegs = myPopups.grabAnswer("Type in how many legs you want your monster to have");
+		double Legs;
+		
+		while(!isDouble(userMonsterLegs))
+		{
+			userMonsterLegs = myPopups.grabAnswer("Type in a valid double for your legs!!");
+		}
+		
+		if(isDouble(userMonsterLegs))
+		{
+			Legs = Double.parseDouble(userMonsterLegs);
+		}
+		else
+		{
+			Legs = -.09;
+		}
+		
+		myPopups.showResponse("Your monster will have " + Legs + " legs");
 		//myOutput.displayMonsterConsole(gabeMonster.toString());
 		//myOutput.displayMonsterGUI(gabeMonster.toString());
 		//this.makeUserMonster();
@@ -135,12 +154,26 @@ public class MonsterController
 		}
 		catch(NumberFormatException error)
 		{
-			myPopups.showResponse("not an int - bad value will be used");
+			myPopups.showResponse("not an int - bad value will be used retry");
 		}
 		
 		return isInt;
 	}
 	
-	
+	private boolean isDouble(String input)
+	{
+		boolean isDouble = false;
+		
+		try
+		{
+			double userMonsterLegs = Double.parseDouble(input);
+			isDouble = true;
+		}
+		catch(NumberFormatException error)
+		{
+			myPopups.showResponse("not a double - bad value retry");
+		}
+		return isDouble;
+	}
 	
 } 
